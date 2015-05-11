@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+
   resources :galleries
   resources :pieces
     resources :users do

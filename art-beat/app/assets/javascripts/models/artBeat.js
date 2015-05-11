@@ -52,6 +52,7 @@ ArtBeat.prototype = {
     console.log('loading all galleries')
     this.allGalleries = [];
     for(var i = 0; i <response.length; i++) {
+      console.dir(response)
       var gallery = new Gallery(response[i].id, response[i].user_id, response[i].gallery_name, response[i].gallery_description);
       this.allGalleries.push(gallery);
     }
@@ -70,8 +71,8 @@ ArtBeat.prototype = {
     console.log(response);
     this.allArtists = [];
     for(var i = 0; i <response.length; i++) {
-      var gallery = new Artist(response[i].name, response[i].bio, response[i].prof_pic, response[i].contact_info);
-      this.allArtists.push(gallery);
+      var artist = new User(response[i].id, response[i].name, response[i].bio, response[i].prof_pic, response[i].contact_info);
+      this.allArtists.push(artist);
     }
   },
 

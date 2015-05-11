@@ -17,4 +17,5 @@
 $(document).ready(function(){
   artBeatModel = new ArtBeat();
   artBeatView = new ArtBeatView(artBeatModel);
+
 });

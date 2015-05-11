@@ -1,7 +1,6 @@
 
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:index]
 
   def index
     @users = User.all
@@ -13,12 +12,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     render json: @user
   end
 
   def update
-      @user = current_user
+    @user = User(params[:id])
     if @user.update( user_params )
       redirect_to @user
     else

@@ -1,7 +1,6 @@
 
 class GalleriesController < ApplicationController
 
-  before_action :authenticate_user!
 
   def index
     @galleries = Gallery.all
@@ -14,12 +13,13 @@ class GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find(params[:id])
-    render json: @gallery
+    userid = @gallery.user_id
+    @user = User.find(userid)
   end
 
   def create
     @galleries = Gallery.all
-    @gallery = current_user.galleries.new(gallery_params)
+    @gallery = users.galleries.new(gallery_params)
       if @gallery.save
         render json: @galleries
       else
@@ -35,7 +35,7 @@ class GalleriesController < ApplicationController
     else
       render :edit
     end
-    render json: @gallery
+
   end
 
   def destroy
@@ -47,7 +47,7 @@ class GalleriesController < ApplicationController
 
 private
   def gallery_params
-    params.require(:gallery).permit(:location, :brand, :size)
+    params.require(:gallery).permit(:user_id, :gallery_name, :description)
   end
 
 

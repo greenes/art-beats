@@ -1,0 +1,29 @@
+
+<% if @gallery.errors.any? %>
+<ul>
+    <% @gallery.errors.full_messages.each do |err|%>
+    <li> <%=err%></li>
+    <%end%>
+
+</ul>
+<% end %>
+
+
+<h2>
+<% @galleries.each do |gallery| %>
+  <%= link_to "#{gallery.gallery_name}", gallery_path(gallery.id) %>
+<% end %>
+</h2>
+
+
+<%= form_for @gallery do |f| %>
+
+  <%= f.label :gallery_name %>
+  <%= f.text_field :gallery_name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.submit "new gallery"%>
+
+<%end%>
