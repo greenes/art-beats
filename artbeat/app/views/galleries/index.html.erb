@@ -1,0 +1,6 @@
+
+
+
+  <% @galleries.each do |gallery| %>
+    <h2><%= link_to "#{gallery.gallery_name}", gallery_path(gallery.id) %></h2>
+  <% end %>

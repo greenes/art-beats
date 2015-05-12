@@ -1,0 +1,42 @@
+<% if @gallery.errors.any? %>
+<ul>
+    <% @gallery.errors.full_messages.each do |err|%>
+    <li> <%=err%></li>
+    <%end%>
+
+</ul>
+<% end %>
+
+  <h2> <%= "#{@gallery.gallery_name}" %></h2>
+  <h3> <%= "#{@gallery.description}" %></h3>
+
+    <p id="gallery-info"> <%= "#{@artist.name} | #{@artist.contact_info}" %></p>
+
+    <% @pieces.each do |piece| %>
+    <p><%= link_to "#{piece.piece_name}", piece_path(piece.id) %></p>
+    <%end%>
+
+    <form action="new-piece-button">
+      <input type="file" name="image"><br>
+      Name: <input type="text" name="name"><br>
+      Description: <input type="text" name="piece_description"><br>
+      Date: <input type="text" name="piece_date"><br>
+      <input type="submit" value="Submit">
+    </form>
+
+    <%= form_for @gallery do |f| %>
+      <p>
+      <%= f.label :gallery_name %>
+      <%= f.text_field :gallery_name  %>
+      </p>
+
+      <p>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+      </p>
+
+      <p>
+      <%= f.submit %>
+      </p>
+
+    <%end%>

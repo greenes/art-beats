@@ -1,0 +1,5 @@
+
+
+<% @pieces.each do |piece| %>
+  <h2><%= link_to "#{piece.piece_name}", piece_path(piece.id) %></h2>
+<% end %>
