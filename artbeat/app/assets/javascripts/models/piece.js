@@ -1,12 +1,31 @@
-var Piece = function(id, gallery_id, piece_name, picture, piece_description){
-  this.id = id;
-  this.gallery = gallery_id;
-  this.piece_name = piece_name;
-  this.picture = picture;
-  this.piece_description = piece_description;
+var Piece = function(){
+  this.stars = $('#piece-stars').val();
+  this.gallery = $('#piece-gallery').val();
+  this.artist = $('#piece-artist').val();
+  this.id = $('#piece-id').val();
 }
 
 Piece.prototype = {
+
+  star: function(){
+    this.stars += 1;
+  },
+
+  get: function(){
+    console.log(this)
+    $.ajax({
+      type:'GET',
+      dataType: 'json',
+      url: 'http://localhost:3000/artists/' + this.artist + '/galleries/' + this.gallery + '/pieces/' + this.id
+    }).done(function(response){
+      this.stars = response.stars;
+      this.gallery = response.gallery;
+      this.artist = response.artist;
+      this.id = response.id;
+      console.log(response);
+    }).fail(function(response){
+    });
+  },
 
   save: function(){
     $.ajax({
@@ -16,7 +35,6 @@ Piece.prototype = {
       url: 'http://localhost:3000/galleries/' + this.gallery + '/pieces'
     }).done(function(response) {
       console.log("ajax request complete, piece saved?");
-      //artBeatModel.getPieces();
     }).fail(function(){
       console.log("failed to save");
     })
@@ -25,14 +43,20 @@ Piece.prototype = {
   update: function(){
     $.ajax({
       type: 'PATCH',
-      data: { piece: {data}},
+      data: { piece:
+        {
+          id: this.id,
+          gallery_id: this.gallery,
+          stars: this.stars
+        }
+      },
       dataType: 'json',
-      url: 'http://localhost:3000/artists/' + this.artist + '/galleries/' + this.gallery + '/pieces' + this.id
+      url: 'http://localhost:3000/artists/' + this.artist + '/galleries/' + this.gallery + '/pieces/' + this.id
     }).done(function(response) {
-      console.log("ajax request complete, piece updated?");
-      //artBeatModel.getPieces();
-    }).fail(function(){
-      console.log("failed to save");
+      console.log("ajax request complete");
+      console.log(response);
+    }).fail(function(response){
+      console.log("failed to save", response.responseText);
     })
   }
 }

@@ -35,7 +35,12 @@ header {
 }
 
 #view-area {
-  top:
+  position:absolute;
+  top: 70px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow-y:scroll;
 }
 
  #navbar a {
@@ -50,6 +55,7 @@ header {
 
  #piece-view {
    float: right;
+
  }
  #art-beat {
    text-decoration: none;
@@ -70,6 +76,15 @@ header {
    float: right;
  }
 
+ #gallery-thumbnails {
+   display: inline-block;
+   width: 100px;
+   height: 100px;
+   background-size: 150%;
+   background-postion: center center;
+   background-repeat: no-repeat;
+ }
+
  #pieces {
    display: inline-block;
    color: #7cbafd;
@@ -87,7 +102,8 @@ header {
    height:400px;
  }
 
- h2 {
+ h2 a {
+   color: white;
    text-decoration: none;
    font-family: 'Indie Flower', cursive;
    font-weight: bold;

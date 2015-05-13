@@ -17,10 +17,7 @@
 
 
 $(document).ready(function(){
-  artBeatModel = new ArtBeat();
-  artBeatView = new ArtBeatView(artBeatModel);
-  artistModel = new Artist();
-  artistView = new ArtistView(artistModel);
-  
+
+
 
 });

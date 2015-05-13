@@ -1,9 +1,10 @@
 var Gallery = function(id, artist_id, gallery_name, description) {
   this.pieces = [];
   this.id = id;
-  this.artist = user_id;
+  this.artist = artist_id;
   this.gallery_name = gallery_name;
   this.description = description;
+  console.log(this);
 }
 
 Gallery.prototype = {
@@ -53,6 +54,7 @@ Gallery.prototype = {
     this.pieces = [];
       for(var i = 0; i < response.length; i++){
         var piece = new Piece(response[i].id, response[i].gallery_id, response[i].piece_name, response[i].piece_date, response[i].piece_description);
+        piece.artist = this.artis
         this.pieces.push(piece);
       }
   }

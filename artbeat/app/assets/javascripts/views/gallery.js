@@ -1,7 +1,6 @@
 var GalleryView = function(gallery) {
   var newPieceButton = $('#new-piece-button')
   this.model= gallery;
-  newPieceButton.addEventListener('click', this.submitNewPiece.bind(this));
 }
 
 GalleryView.prototype = {

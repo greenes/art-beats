@@ -13,9 +13,9 @@
       <p id="gallery-artist"> <%= "#{@profile.name}" %></p>
 
       <% @pieces.each do |piece| %>
-        <%= link_to artist_gallery_piece_path(@artist, @gallery, piece.id) do%>
-          <p><% image_tag "#{piece.picture}" %></p>
-        <%end%>
+      <a href='<%=artist_gallery_piece_path(@artist, @gallery, piece.id)%>'>
+          <div id='gallery-thumbnails' style="background-image:url('<%=piece.picture%>');"></div>
+      </a>
       <%end%>
 
 
@@ -42,6 +42,8 @@ or delete the gallery -->
         </p>
 
         <%= f.hidden_field :gallery_id, :value => @gallery.id %>
+        <%= f.hidden_field :stars, :value => 0 %>
+
 
         <p>
         <%= f.submit %>

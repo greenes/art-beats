@@ -2,7 +2,7 @@
   <h2><%= @profile.name %></h2>
   <h2><%= @profile.profile %></h2>
 
-  <% @galleries.each do |gallery| %>
+  <% @galleries.reverse_each do |gallery| %>
     <h2><%= link_to "#{gallery.gallery_name}", artist_gallery_path(@artist, gallery.id) %></h2>
   <% end %>
 

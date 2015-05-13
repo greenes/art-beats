@@ -7,3 +7,13 @@
 <h2><%=@piece.piece_description%></h2>
 
 <h2><%="From #{@profile.name}'s #{@gallery.gallery_name} gallery"%></h2>
+
+<h2 id='artbeats'>artbeats: <span id='num-of-artbeats'><%="#{@piece.stars}"%></span> </h2>
+
+
+<form>
+  <input id='piece-artist' type='hidden' value='<%=@artist.id%>'>
+  <input id='piece-gallery' type='hidden' value='<%=@gallery.id%>'>
+  <input id='piece-id' type='hidden' value='<%=@piece.id%>'>
+  <input id='piece-stars' type='hidden' value='<%=@piece.stars%>'>
+</form>
