@@ -1,5 +1,4 @@
 class ArtistsController < ApplicationController
-  before_action :if_current_user_has_no_profile
 
   def index
     @artists = Artist.all
@@ -36,16 +35,5 @@ private
   def artist_params
     params.require(:artist).permit(:name, :bio, :prof_pic, :contact_info)
   end
-
-  def if_current_user_has_no_profile
-    if current_artist
-      if current_artist.profile
-      else
-        redirect_to new_artist_profile_path
-      end
-    else
-    end
-  end
-
 
 end

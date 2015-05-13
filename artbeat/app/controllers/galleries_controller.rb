@@ -1,7 +1,7 @@
 
 class GalleriesController < ApplicationController
 
-  before_action :authenticate_artist!, :only => [:create, :update, :destroy]
+  before_action :authenticate_artist!, :only => [:new, :create, :update, :destroy]
 
   def index
     @galleries = Gallery.all
@@ -16,18 +16,24 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
     artistid = @gallery.artist_id
     @artist = Artist.find(artistid)
+    @profile = Profile.find(@artist.profile)
     @pieces = @gallery.pieces.all
+    @piece = Piece.new
+  end
+
+  def new
+    @gallery = Gallery.new
+    @artist = Artist.find(params[:artist_id])
   end
 
   def create
-    @galleries = Gallery.all
-    @gallery = artists.galleries.new(gallery_params)
+    @gallery = Gallery.new(gallery_params)
       if @gallery.save
-        render json: @galleries
+        @profile = Artist.find(@gallery.artist.id).profile
+        redirect_to artist_profile_path(@profile.artist, @profile)
       else
        render :new
      end
-     render json: @gallery
   end
 
   def update
@@ -44,13 +50,14 @@ class GalleriesController < ApplicationController
   def destroy
     @galleries = Gallery.all
     @gallery = Gallery.find(params[:id])
+    @profile = Artist.find(@gallery.artist.id).profile
     @gallery.destroy
-    render json: @galleries
+    redirect_to artist_profile_path(@profile.artist, @profile)
   end
 
 private
   def gallery_params
-    params.require(:gallery).permit(:user_id, :gallery_name, :description)
+    params.require(:gallery).permit(:artist_id, :gallery_name, :description)
   end
 
   def piece_params

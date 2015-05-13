@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20150512172842) do
 
   create_table "pieces", force: :cascade do |t|
     t.integer  "gallery_id"
+    t.string   "picture"
     t.string   "piece_name"
-    t.string   "piece_date"
     t.text     "piece_description"
+    t.integer  "stars"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "image"
   end
 
   create_table "profiles", force: :cascade do |t|

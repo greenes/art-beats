@@ -1,3 +1,16 @@
-<% @artists.each do |artist| %>
-<h2><%= link_to "#{artist.name}", artist_path(artist.id) %></h2>
+<% @profiles.each do |profile| %>
+  <% artistid = profile.artist_id %>
+  <% @artist = Artist.find(artistid) %>
+
+<h2 id="artist-names"><%= link_to "#{profile.name}", artist_profile_path(@artist, profile.id) %></h2>
 <% end %>
+
+
+<% if current_artist %>
+  <% if current_artist.profile %>
+  <h2><%= link_to "My Profile", edit_artist_profile_path(@artist, @artist.profile)%></h2>
+    <%else%>
+    <h2><%= link_to "My Profile", new_artist_profile_path(current_artist.id)%></h2>
+  <%end%>
+
+<%end%>

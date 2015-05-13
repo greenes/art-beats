@@ -7,14 +7,14 @@ Rails.application.routes.draw do
 
 
     resources :artists do
-    resources :galleries do
-      resources :pieces
+      resources :galleries do
+        resources :pieces
       end
     end
 
-  resources :profiles
-  resources :galleries
-  resources :pieces
+  resources :profiles, only: [:index]
+  resources :galleries, only: [:index]
+  resources :pieces, only: [:index]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

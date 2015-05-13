@@ -4,6 +4,7 @@ class PiecesController < ApplicationController
   def index
     @pieces = Piece.all
 
+
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @pieces }
@@ -16,27 +17,30 @@ class PiecesController < ApplicationController
     @gallery = Gallery.find(galleryid)
     artistid = @gallery.artist_id
     @artist = Artist.find(artistid)
+    @profile = Profile.find(@artist.profile)
   end
 
   def new
     @piece = Piece.new
+    @gallery = Gallery.find(params[:gallery_id])
+    @artist = Artist.find(params[:artist_id])
   end
 
   def create
-    @pieces = Gallery.all
-    @piece = users.galleries.new(gallery_params)
-      if @gallery.save
-        render json: @galleries
+    @piece = Piece.new(piece_params)
+      if @piece.save
+        @artist = current_artist
+        @profile = Profile.find(@artist.profile.id)
+        redirect_to artist_profile_path(@artist, @profile)
       else
        render :new
      end
-     render json: @gallery
   end
 
   def update
-      @gallery = Gallery.find( params[:id] )
-    if @gallery.update( gallery_params )
-      redirect_to @gallery
+      @piece = Piece.find( params[:id] )
+    if @piece.update( piece_params )
+      redirect_to @piece
     else
       render :edit
     end
@@ -44,15 +48,15 @@ class PiecesController < ApplicationController
   end
 
   def destroy
-    @galleries = Gallery.all
-    @gallery = Gallery.find(params[:id])
-    @gallery.destroy
-    render json: @galleries
+    @pieces = Piece.all
+    @piece = Piece.find(params[:id])
+    @piece.destroy
+    redirect_to @pieces
   end
 
 private
-  def gallery_params
-    params.require(:gallery).permit(:user_id, :gallery_name, :description)
+  def piece_params
+    params.require(:piece).permit(:gallery_id, :piece_name, :piece_description, :picture)
   end
 
 

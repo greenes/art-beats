@@ -15,8 +15,8 @@ Gallery.create(artist_id: 1, gallery_name: 'the blue period', description: 'huma
 Gallery.create(artist_id: 1, gallery_name: 'running away', description: 'acryllic paint')
 Gallery.create(artist_id: 1, gallery_name: 'love', description: 'sculptures made from things i found around the neighborhood')
 
-Piece.create(gallery_id: 1, piece_name: 'coming home', piece_date: 'sept 2013', piece_description: 'charcoal sketch')
-Piece.create(gallery_id: 2, piece_name: 'coming home', piece_date: 'sept 2013', piece_description: 'charcoal sketch')
-Piece.create(gallery_id: 2, piece_name: 'coming home', piece_date: 'sept 2013', piece_description: 'charcoal sketch')
-Piece.create(gallery_id: 1, piece_name: 'coming home', piece_date: 'sept 2013', piece_description: 'charcoal sketch')
-Piece.create(gallery_id: 1, piece_name: 'coming home', piece_date: 'sept 2013', piece_description: 'charcoal sketch')
+Piece.create(gallery_id: 1, piece_name: 'coming home', piece_url: 'IMG_0968', piece_description: 'charcoal sketch')
+Piece.create(gallery_id: 2, piece_name: 'coming home', piece_url: 'IMG_0969', piece_description: 'charcoal sketch')
+Piece.create(gallery_id: 2, piece_name: 'coming home', piece_url: 'IMG_0971', piece_description: 'charcoal sketch')
+Piece.create(gallery_id: 1, piece_name: 'coming home', piece_url: 'IMG_0972', piece_description: 'charcoal sketch')
+Piece.create(gallery_id: 1, piece_name: 'coming home', piece_url: 'IMG_0964', piece_description: 'charcoal sketch')
